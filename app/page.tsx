@@ -595,6 +595,181 @@ const scenarios: any = {
       },
     },
   },
+KKR: {
+  cards: {
+    'BEST CASE': {
+      probability: 0,
+      points: 15,
+
+      results: [
+        'KKR beat MI',
+        'KKR beat DC',
+        'CSK lose both matches',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 18],
+        ['SRH', 16],
+        ['KKR', 15],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['DC', 10],
+      ],
+    },
+
+    'TOP 2': {
+      probability: 1,
+      points: 15,
+
+      results: [
+        'KKR win both matches big',
+        'GT lose to CSK',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['CSK', 16],
+        ['KKR', 15],
+        ['GT', 16],
+        ['SRH', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['DC', 10],
+      ],
+    },
+
+    QUALIFY: {
+      probability: 10,
+      points: 15,
+
+      results: [
+        'KKR beat MI',
+        'KKR beat DC',
+        'CSK lose both',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['KKR', 15],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['DC', 10],
+      ],
+    },
+
+    ELIMINATION: {
+      probability: 90,
+      points: 11,
+
+      results: [
+        'KKR lose either match',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['KKR', 11],
+        ['DC', 10],
+      ],
+    },
+  },
+},
+
+DC: {
+  cards: {
+    'BEST CASE': {
+      probability: 0,
+      points: 14,
+
+      results: [
+        'DC beat RR',
+        'DC beat KKR',
+        'CSK lose both matches',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['DC', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['KKR', 11],
+      ],
+    },
+
+    'TOP 2': {
+      probability: 0,
+      points: 14,
+
+      results: [
+        'Mathematically near impossible',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['DC', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['KKR', 11],
+      ],
+    },
+
+    QUALIFY: {
+      probability: 5,
+      points: 14,
+
+      results: [
+        'DC win both matches',
+        'CSK lose both matches',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['DC', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['KKR', 11],
+      ],
+    },
+
+    ELIMINATION: {
+      probability: 95,
+      points: 10,
+
+      results: [
+        'DC lose either match',
+      ],
+
+      table: [
+        ['RCB', 18],
+        ['GT', 16],
+        ['SRH', 14],
+        ['PBKS', 13],
+        ['RR', 12],
+        ['CSK', 12],
+        ['KKR', 11],
+        ['DC', 10],
+      ],
+    },
+  },
+},
 }
 
 function ScenarioCard({
