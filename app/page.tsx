@@ -354,8 +354,8 @@ export default function Home() {
       }
 
       simulate(index + 1, tableB, [
-        ...results,
         `${away} beat ${home}`,
+        ...results,
       ])
     }
 
@@ -403,6 +403,7 @@ export default function Home() {
     probability,
     color,
     scenario,
+    selectedTeam,
   }: any) {
     if (!scenario) return null
 
@@ -616,6 +617,7 @@ export default function Home() {
 
                 <div className="grid md:grid-cols-2 gap-8">
                   <ScenarioCard
+                    selectedTeam={selectedTeam}
                     title="TOP 2"
                     probability={
                       playoffProbabilities[
@@ -627,6 +629,7 @@ export default function Home() {
                   />
 
                   <ScenarioCard
+                    selectedTeam={selectedTeam}
                     title="BEST CASE"
                     probability={
                       playoffProbabilities[
@@ -641,6 +644,7 @@ export default function Home() {
             ) : (
               <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 <ScenarioCard
+                  selectedTeam={selectedTeam}
                   title="BEST CASE"
                   probability={
                     playoffProbabilities[
@@ -652,6 +656,7 @@ export default function Home() {
                 />
 
                 <ScenarioCard
+                  selectedTeam={selectedTeam}
                   title="TOP 2"
                   probability={
                     playoffProbabilities[
@@ -663,6 +668,7 @@ export default function Home() {
                 />
 
                 <ScenarioCard
+                  selectedTeam={selectedTeam}
                   title="QUALIFY"
                   probability={
                     playoffProbabilities[
@@ -674,6 +680,7 @@ export default function Home() {
                 />
 
                 <ScenarioCard
+                  selectedTeam={selectedTeam}
                   title="ELIMINATION"
                   probability={
                     playoffProbabilities[
