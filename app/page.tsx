@@ -911,6 +911,8 @@ export default function Home() {
                 </option>
                 <option value="RR">RR</option>
                 <option value="CSK">CSK</option>
+                <option value="KKR">KKR</option>
+                <option value="DC">DC</option>
               </select>
             </div>
           </div>
