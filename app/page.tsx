@@ -413,14 +413,14 @@ export default function Home() {
 
     return (
       <div
-        className={`rounded-3xl border p-4 md:p-6 ${color} backdrop-blur-xl`}
+        className={`rounded-3xl border p-5 md:p-6 ${color} backdrop-blur-xl w-full max-w-sm`}
       >
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-2xl font-extrabold">
+        <div className="mb-5 text-center">
+          <h2 className="text-2xl font-extrabold mb-3">
             {title}
           </h2>
 
-          <div className="text-3xl md:text-4xl font-black">
+          <div className="text-4xl md:text-5xl font-black">
             {Number(probability).toFixed(1)}%
           </div>
         </div>
@@ -594,7 +594,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto place-items-center">
                   <ScenarioCard
                     selectedTeam={selectedTeam}
                     title="TOP 2"
@@ -621,7 +621,7 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
                 <ScenarioCard
                   selectedTeam={selectedTeam}
                   title="BEST CASE"
