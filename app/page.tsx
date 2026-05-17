@@ -354,8 +354,8 @@ export default function Home() {
       }
 
       simulate(index + 1, tableB, [
-        `${away} beat ${home}`,
         ...results,
+        `${away} beat ${home}`,
       ])
     }
 
@@ -695,6 +695,14 @@ export default function Home() {
           </>
         )}
       </div>
+
+      <footer className="text-center text-zinc-500 py-10 text-sm border-t border-zinc-800">
+        Made by{' '}
+        <span className="font-bold text-white">
+          Yash Joshi
+        </span>{' '}
+        🏏
+      </footer>
     </main>
   )
 }
