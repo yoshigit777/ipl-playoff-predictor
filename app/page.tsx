@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 
 const standingsBase: Record<string, number> = {
-  RCB: 16,
+  RCB: 18,
   GT: 16,
   SRH: 14,
   PBKS: 13,
@@ -23,64 +23,63 @@ const playoffProbabilities: Record<
   }
 > = {
   RCB: {
-    qualify: 99.4,
-    top2: 88,
-    first: 52,
-    eliminated: 0.6,
+    qualify: 100,
+    top2: 92,
+    first: 58,
+    eliminated: 0,
   },
 
   GT: {
-    qualify: 97,
-    top2: 82,
-    first: 31,
-    eliminated: 3,
+    qualify: 96,
+    top2: 74,
+    first: 24,
+    eliminated: 4,
   },
 
   SRH: {
-    qualify: 77,
-    top2: 42,
-    first: 12,
-    eliminated: 23,
+    qualify: 79,
+    top2: 41,
+    first: 11,
+    eliminated: 21,
   },
 
   PBKS: {
-    qualify: 48,
-    top2: 21,
-    first: 4,
-    eliminated: 52,
+    qualify: 38,
+    top2: 12,
+    first: 2,
+    eliminated: 62,
   },
 
   RR: {
-    qualify: 47,
-    top2: 18,
-    first: 3,
-    eliminated: 53,
+    qualify: 51,
+    top2: 19,
+    first: 4,
+    eliminated: 49,
   },
 
   CSK: {
-    qualify: 25,
-    top2: 6,
-    first: 0.5,
-    eliminated: 75,
+    qualify: 29,
+    top2: 7,
+    first: 1,
+    eliminated: 71,
   },
 
   KKR: {
-    qualify: 5,
-    top2: 0.4,
+    qualify: 6,
+    top2: 0.5,
     first: 0,
-    eliminated: 95,
+    eliminated: 94,
   },
 
   DC: {
-    qualify: 0.5,
+    qualify: 0.2,
     top2: 0,
     first: 0,
-    eliminated: 99.5,
+    eliminated: 99.8,
   },
 }
 
 const matches = [
-  ['PBKS', 'RCB'],
   ['DC', 'RR'],
   ['CSK', 'SRH'],
   ['RR', 'LSG'],
@@ -91,6 +90,27 @@ const matches = [
   ['MI', 'RR'],
   ['KKR', 'DC'],
 ]
+
+const remainingMatches: Record<
+  string,
+  string[]
+> = {
+  RCB: ['vs SRH'],
+
+  GT: ['vs CSK'],
+
+  SRH: ['vs CSK', 'vs RCB'],
+
+  PBKS: ['vs LSG'],
+
+  RR: ['vs DC', 'vs LSG', 'vs MI'],
+
+  CSK: ['vs SRH', 'vs GT'],
+
+  KKR: ['vs MI', 'vs DC'],
+
+  DC: ['vs RR', 'vs KKR'],
+}
 
 const teamBackgrounds: Record<string, string> = {
   RCB: '/rcb.jpg',
@@ -117,52 +137,37 @@ function getScenarioExplanation(
     Record<string, string[]>
   > = {
     RCB: {
-      QUALIFY: [
-        'RCB win at least 1 match',
-        'PBKS or RR lose at least 1 game',
-        'Avoid major NRR collapse',
-      ],
-
       'TOP 2': [
-        'RCB beat PBKS',
         'RCB beat SRH',
-        'GT lose at least 1 match',
+        'GT lose to CSK',
       ],
 
       'BEST CASE': [
-        'RCB win both matches',
+        'RCB beat SRH',
         'GT lose to CSK',
-        'PBKS lose at least 1 match',
-      ],
-
-      ELIMINATION: [
-        'RCB lose both matches',
-        'PBKS win both matches',
-        'RR win both matches',
-        'CSK win both matches',
+        'SRH lose to CSK',
       ],
     },
 
     GT: {
       QUALIFY: [
         'GT beat CSK',
-        'RR or PBKS drop points',
       ],
 
       'TOP 2': [
         'GT beat CSK',
-        'RCB lose at least 1 game',
+        'RCB lose to SRH',
       ],
 
       'BEST CASE': [
         'GT beat CSK',
-        'RCB lose both matches',
+        'RCB lose to SRH',
       ],
 
       ELIMINATION: [
         'GT lose to CSK',
-        'RR win both matches',
         'CSK win both matches',
+        'RR win all remaining matches',
       ],
     },
 
@@ -175,66 +180,60 @@ function getScenarioExplanation(
       'TOP 2': [
         'SRH win both matches',
         'GT lose to CSK',
-        'PBKS lose at least 1 match',
       ],
 
       'BEST CASE': [
         'SRH win both matches',
-        'RCB lose both matches',
+        'RCB lose to SRH',
         'GT lose to CSK',
       ],
 
       ELIMINATION: [
         'SRH lose both matches',
-        'CSK win both matches',
       ],
     },
 
     PBKS: {
       QUALIFY: [
-        'PBKS beat RCB',
         'PBKS beat LSG',
+        'CSK lose at least 1 match',
       ],
 
       'TOP 2': [
-        'PBKS win both matches',
-        'RCB lose to SRH',
+        'PBKS beat LSG big',
         'GT lose to CSK',
       ],
 
       'BEST CASE': [
-        'PBKS win both matches',
-        'RCB lose both matches',
+        'PBKS beat LSG',
         'GT lose to CSK',
+        'SRH lose both matches',
       ],
 
       ELIMINATION: [
-        'PBKS lose both matches',
-        'RR win both matches',
-        'CSK win both matches',
+        'PBKS lose to LSG',
       ],
     },
 
     RR: {
       QUALIFY: [
         'RR beat DC',
+        'RR beat LSG',
         'RR beat MI',
       ],
 
       'TOP 2': [
-        'RR win both matches',
+        'RR win all matches',
         'GT lose to CSK',
-        'PBKS lose at least 1 match',
       ],
 
       'BEST CASE': [
-        'RR win both matches',
-        'RCB lose both matches',
+        'RR win all matches',
+        'RCB lose to SRH',
       ],
 
       ELIMINATION: [
-        'RR lose both matches',
-        'CSK win both matches',
+        'RR lose 2 matches',
       ],
     },
 
@@ -242,19 +241,15 @@ function getScenarioExplanation(
       QUALIFY: [
         'CSK beat SRH',
         'CSK beat GT',
-        'RR lose at least 1 game',
       ],
 
       'TOP 2': [
         'CSK win both matches big',
-        'GT lose to CSK',
-        'RCB lose both matches',
       ],
 
       'BEST CASE': [
         'CSK win both matches',
-        'RR lose both matches',
-        'PBKS lose both matches',
+        'RR lose at least 1 match',
       ],
 
       ELIMINATION: [
@@ -266,20 +261,16 @@ function getScenarioExplanation(
       QUALIFY: [
         'KKR beat MI',
         'KKR beat DC',
-        'CSK lose at least 1 game',
-        'RR lose both matches',
+        'CSK lose both matches',
       ],
 
       'TOP 2': [
         'KKR win both matches big',
-        'GT lose to CSK',
-        'RCB lose both matches',
       ],
 
       'BEST CASE': [
         'KKR win both matches',
-        'CSK lose both matches',
-        'RR lose both matches',
+        'RR lose all matches',
       ],
 
       ELIMINATION: [
@@ -290,20 +281,20 @@ function getScenarioExplanation(
     DC: {
       QUALIFY: [
         'DC beat RR',
-        'RR lose to MI',
+        'DC beat KKR',
         'CSK lose both matches',
       ],
 
       'TOP 2': [
-        'Mathematically almost impossible',
+        'Almost impossible',
       ],
 
       'BEST CASE': [
-        'Absolute cricket chaos',
+        'Absolute cricket madness',
       ],
 
       ELIMINATION: [
-        'DC lose to RR',
+        'DC lose either match',
       ],
     },
   }
@@ -314,7 +305,8 @@ function getScenarioExplanation(
 }
 
 export default function Home() {
-  const [selectedTeam, setSelectedTeam] = useState('')
+  const [selectedTeam, setSelectedTeam] =
+    useState('')
 
   const currentBackground =
     selectedTeam
@@ -330,13 +322,9 @@ export default function Home() {
       results: string[]
     ) {
       if (index === matches.length) {
-        const ordered = Object.entries(table).sort((a, b) => {
-          if (b[1] !== a[1]) {
-            return b[1] - a[1]
-          }
-
-          return Math.random() - 0.5
-        })
+        const ordered = Object.entries(table).sort(
+          (a, b) => b[1] - a[1]
+        )
 
         all.push({
           results,
@@ -403,7 +391,6 @@ export default function Home() {
     )
 
     return {
-      total: scenarios.length,
       qualify,
       top2,
       first,
@@ -427,14 +414,14 @@ export default function Home() {
 
     return (
       <div
-        className={`rounded-3xl border p-6 ${color} backdrop-blur-xl`}
+        className={`rounded-3xl border p-4 md:p-6 ${color} backdrop-blur-xl`}
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-2xl font-extrabold">
             {title}
           </h2>
 
-          <div className="text-4xl font-black">
+          <div className="text-3xl md:text-4xl font-black">
             {Number(probability).toFixed(1)}%
           </div>
         </div>
@@ -446,6 +433,25 @@ export default function Home() {
               width: `${probability}%`,
             }}
           />
+        </div>
+
+        <div className="mb-6">
+          <div className="text-sm uppercase tracking-widest text-zinc-400 mb-3">
+            Remaining Matches
+          </div>
+
+          <div className="space-y-2">
+            {remainingMatches[selectedTeam]?.map(
+              (match: string, i: number) => (
+                <div
+                  key={i}
+                  className="bg-white/10 p-3 rounded-xl font-semibold"
+                >
+                  {match}
+                </div>
+              )
+            )}
+          </div>
         </div>
 
         <div className="mb-6">
@@ -529,18 +535,18 @@ export default function Home() {
         }}
       >
         <div className="absolute inset-0 bg-black/70">
-          <div className="flex flex-col items-center justify-center text-center px-6 min-h-screen">
+          <div className="flex flex-col items-center justify-center text-center px-4 md:px-6 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF GT vs KKR
+              AS OF RCB vs PBKS
             </div>
 
-            <h1 className="text-6xl md:text-7xl font-black mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black mb-6">
               IPL 2026
               <br />
               Playoff Predictor
             </h1>
 
-            <p className="text-xl text-zinc-300 max-w-3xl mb-10">
+            <p className="text-base md:text-xl text-zinc-300 max-w-3xl mb-10">
               Explore every qualification scenario,
               top-2 possibility and elimination route.
             </p>
@@ -557,12 +563,16 @@ export default function Home() {
                 }
                 className="w-full bg-zinc-900/90 border border-zinc-700 p-5 rounded-2xl text-xl backdrop-blur-xl"
               >
-                <option value="">Select Team</option>
+                <option value="">
+                  Select Team
+                </option>
 
                 <option value="RCB">RCB</option>
                 <option value="GT">GT</option>
                 <option value="SRH">SRH</option>
-                <option value="PBKS">PBKS</option>
+                <option value="PBKS">
+                  PBKS
+                </option>
                 <option value="RR">RR</option>
                 <option value="CSK">CSK</option>
                 <option value="KKR">KKR</option>
@@ -573,64 +583,108 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-20">
         {data && (
           <>
             <div className="text-center mb-12">
               <div className="inline-block mb-4 bg-zinc-900 border border-zinc-700 px-4 py-2 rounded-full text-sm tracking-wider">
-                AS OF GT vs KKR
+                AS OF RCB vs PBKS
               </div>
 
               <h2 className="text-5xl font-black">
                 {selectedTeam} Playoff Universes
               </h2>
-
-              <p className="text-zinc-400 mt-4 text-lg">
-                Simulating every mathematically possible IPL outcome.
-              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-              <ScenarioCard
-                title="BEST CASE"
-                probability={
-                  playoffProbabilities[selectedTeam]
-                    ?.first || 0
-                }
-                color="bg-green-500/10 border-green-400"
-                scenario={data.first[0]}
-              />
+            {selectedTeam === 'RCB' ? (
+              <div className="space-y-8">
+                <div className="bg-green-500/20 border border-green-400 rounded-3xl p-10 text-center">
+                  <div className="text-6xl mb-4">
+                    🎉🏏🥳
+                  </div>
 
-              <ScenarioCard
-                title="TOP 2"
-                probability={
-                  playoffProbabilities[selectedTeam]
-                    ?.top2 || 0
-                }
-                color="bg-yellow-500/10 border-yellow-400"
-                scenario={data.top2[0]}
-              />
+                  <h2 className="text-5xl font-black text-green-300 mb-4">
+                    RCB HAVE QUALIFIED
+                  </h2>
 
-              <ScenarioCard
-                title="QUALIFY"
-                probability={
-                  playoffProbabilities[selectedTeam]
-                    ?.qualify || 0
-                }
-                color="bg-blue-500/10 border-blue-400"
-                scenario={data.qualify[0]}
-              />
+                  <p className="text-xl text-zinc-200">
+                    Bengaluru are officially through
+                    to the IPL 2026 playoffs after
+                    defeating PBKS.
+                  </p>
+                </div>
 
-              <ScenarioCard
-                title="ELIMINATION"
-                probability={
-                  playoffProbabilities[selectedTeam]
-                    ?.eliminated || 0
-                }
-                color="bg-red-500/10 border-red-400"
-                scenario={data.eliminated[0]}
-              />
-            </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <ScenarioCard
+                    title="TOP 2"
+                    probability={
+                      playoffProbabilities[
+                        selectedTeam
+                      ]?.top2 || 0
+                    }
+                    color="bg-yellow-500/10 border-yellow-400"
+                    scenario={data.top2[0]}
+                  />
+
+                  <ScenarioCard
+                    title="BEST CASE"
+                    probability={
+                      playoffProbabilities[
+                        selectedTeam
+                      ]?.first || 0
+                    }
+                    color="bg-green-500/10 border-green-400"
+                    scenario={data.first[0]}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+                <ScenarioCard
+                  title="BEST CASE"
+                  probability={
+                    playoffProbabilities[
+                      selectedTeam
+                    ]?.first || 0
+                  }
+                  color="bg-green-500/10 border-green-400"
+                  scenario={data.first[0]}
+                />
+
+                <ScenarioCard
+                  title="TOP 2"
+                  probability={
+                    playoffProbabilities[
+                      selectedTeam
+                    ]?.top2 || 0
+                  }
+                  color="bg-yellow-500/10 border-yellow-400"
+                  scenario={data.top2[0]}
+                />
+
+                <ScenarioCard
+                  title="QUALIFY"
+                  probability={
+                    playoffProbabilities[
+                      selectedTeam
+                    ]?.qualify || 0
+                  }
+                  color="bg-blue-500/10 border-blue-400"
+                  scenario={data.qualify[0]}
+                />
+
+                <ScenarioCard
+                  title="ELIMINATION"
+                  probability={
+                    playoffProbabilities[
+                      selectedTeam
+                    ]?.eliminated || 0
+                  }
+                  color="bg-red-500/10 border-red-400"
+                  scenario={data.eliminated[0]}
+                />
+              </div>
+            )}
           </>
         )}
       </div>
