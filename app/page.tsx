@@ -30,52 +30,52 @@ const playoffProbabilities: Record<
   },
 
   GT: {
-    qualify: 96,
-    top2: 74,
+    qualify: 98,
+    top2: 76,
     first: 24,
-    eliminated: 4,
+    eliminated: 2,
   },
 
   SRH: {
-    qualify: 79,
-    top2: 41,
+    qualify: 74,
+    top2: 39,
     first: 11,
-    eliminated: 21,
+    eliminated: 26,
   },
 
   PBKS: {
-    qualify: 38,
-    top2: 12,
-    first: 2,
-    eliminated: 62,
+    qualify: 23,
+    top2: 8,
+    first: 1,
+    eliminated: 77,
   },
 
   RR: {
-    qualify: 51,
-    top2: 19,
+    qualify: 58,
+    top2: 21,
     first: 4,
-    eliminated: 49,
+    eliminated: 42,
   },
 
   CSK: {
-    qualify: 29,
-    top2: 7,
+    qualify: 33,
+    top2: 9,
     first: 1,
-    eliminated: 71,
+    eliminated: 67,
   },
 
   KKR: {
-    qualify: 6,
-    top2: 0.5,
+    qualify: 10,
+    top2: 1,
     first: 0,
-    eliminated: 94,
+    eliminated: 90,
   },
 
   DC: {
-    qualify: 0.2,
+    qualify: 5,
     top2: 0,
     first: 0,
-    eliminated: 99.8,
+    eliminated: 95,
   },
 }
 
@@ -150,9 +150,7 @@ function getScenarioExplanation(
     },
 
     GT: {
-      QUALIFY: [
-        'GT beat CSK',
-      ],
+      QUALIFY: ['GT beat CSK'],
 
       'TOP 2': [
         'GT beat CSK',
@@ -474,25 +472,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mb-6">
-          <div className="text-sm uppercase tracking-widest text-zinc-400 mb-3">
-            Match Results
-          </div>
-
-          <div className="space-y-2">
-            {scenario.results
-              .slice(0, 5)
-              .map((r: string, i: number) => (
-                <div
-                  key={i}
-                  className="bg-black/30 p-3 rounded-xl"
-                >
-                  {r}
-                </div>
-              ))}
-          </div>
-        </div>
-
         <div>
           <div className="text-sm uppercase tracking-widest text-zinc-400 mb-3">
             Final Points Table
@@ -592,7 +571,7 @@ export default function Home() {
                 AS OF RCB vs PBKS
               </div>
 
-              <h2 className="text-5xl font-black">
+              <h2 className="text-5xl font-black mb-12">
                 {selectedTeam} Playoff Universes
               </h2>
             </div>
@@ -615,7 +594,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                   <ScenarioCard
                     selectedTeam={selectedTeam}
                     title="TOP 2"
