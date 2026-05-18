@@ -929,27 +929,25 @@ export default function Home() {
               </h2>
 
               <select
-                value={selectedTeam}
-                onChange={(e) =>
-                  setSelectedTeam(e.target.value)
-                }
-                className="w-full bg-zinc-900/90 border border-zinc-700 p-5 rounded-2xl text-xl"
-              >
-                <option value="">
-                  Select Team
-                </option>
+  value={selectedTeam}
+  onChange={(e) =>
+    setSelectedTeam(e.target.value)
+  }
+  className="w-full bg-zinc-900/90 border border-zinc-700 p-5 rounded-2xl text-xl"
+>
+  <option value="">
+    Select Team
+  </option>
 
-                <option value="RCB">RCB</option>
-                <option value="GT">GT</option>
-                <option value="SRH">SRH</option>
-                <option value="PBKS">
-                  PBKS
-                </option>
-                <option value="RR">RR</option>
-                <option value="CSK">CSK</option>
-                <option value="KKR">KKR</option>
-                <option value="DC">DC</option>
-              </select>
+  <option value="CSK">CSK</option>
+  <option value="DC">DC</option>
+  <option value="GT">GT</option>
+  <option value="KKR">KKR</option>
+  <option value="PBKS">PBKS</option>
+  <option value="RCB">RCB</option>
+  <option value="RR">RR</option>
+  <option value="SRH">SRH</option>
+</select>
             </div>
           </div>
         </div>
