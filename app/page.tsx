@@ -13,58 +13,58 @@ const playoffProbabilities: Record<
 > = {
   RCB: {
     qualify: 100,
-    top2: 92,
-    first: 58,
+    top2: 100,
+    first: 68,
     eliminated: 0,
   },
 
   GT: {
-    qualify: 98,
-    top2: 76,
-    first: 24,
-    eliminated: 2,
+    qualify: 99.2,
+    top2: 74,
+    first: 22,
+    eliminated: 0.8,
   },
 
   SRH: {
-    qualify: 74,
-    top2: 39,
-    first: 11,
-    eliminated: 26,
+    qualify: 75,
+    top2: 41,
+    first: 10,
+    eliminated: 25,
   },
 
   PBKS: {
-    qualify: 23,
-    top2: 8,
-    first: 1,
-    eliminated: 77,
-  },
-
-  RR: {
-    qualify: 58,
-    top2: 21,
-    first: 4,
-    eliminated: 42,
+    qualify: 31.1,
+    top2: 0,
+    first: 0,
+    eliminated: 68.9,
   },
 
   CSK: {
-    qualify: 33,
-    top2: 9,
+    qualify: 35.5,
+    top2: 12,
     first: 1,
-    eliminated: 67,
+    eliminated: 64.5,
+  },
+
+  RR: {
+    qualify: 34.8,
+    top2: 8,
+    first: 0,
+    eliminated: 65.2,
   },
 
   KKR: {
-    qualify: 10,
+    qualify: 13.9,
     top2: 1,
     first: 0,
-    eliminated: 90,
+    eliminated: 86.1,
   },
 
   DC: {
-    qualify: 5,
+    qualify: 10.6,
     top2: 0,
     first: 0,
-    eliminated: 95,
+    eliminated: 89.4,
   },
 }
 
@@ -80,13 +80,13 @@ const remainingMatches: Record<
 
   PBKS: ['vs LSG'],
 
-  RR: ['vs DC', 'vs LSG', 'vs MI'],
+  RR: ['vs LSG', 'vs MI'],
 
   CSK: ['vs SRH', 'vs GT'],
 
   KKR: ['vs MI', 'vs DC'],
 
-  DC: ['vs RR', 'vs KKR'],
+  DC: ['vs KKR'],
 }
 
 const teamBackgrounds: Record<string, string> = {
@@ -106,7 +106,7 @@ const scenarios: any = {
 
     cards: {
       'BEST CASE': {
-        probability: 58,
+        probability: 68,
         points: 20,
 
         results: [
@@ -121,33 +121,33 @@ const scenarios: any = {
           ['SRH', 14],
           ['PBKS', 13],
           ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'TOP 2': {
-        probability: 92,
-        points: 20,
+        probability: 100,
+        points: 18,
 
         results: [
-          'RCB beat SRH',
+          'RCB already confirmed in Qualifier 1 if CSK beat SRH',
         ],
 
         table: [
-          ['RCB', 20],
-          ['GT', 18],
+          ['RCB', 18],
+          ['GT', 16],
           ['SRH', 14],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'WORST CASE': {
-        probability: 8,
+        probability: 0,
         points: 18,
 
         results: [
@@ -159,10 +159,10 @@ const scenarios: any = {
           ['RCB', 18],
           ['SRH', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
@@ -171,7 +171,7 @@ const scenarios: any = {
   GT: {
     cards: {
       'BEST CASE': {
-        probability: 24,
+        probability: 22,
         points: 18,
 
         results: [
@@ -184,15 +184,15 @@ const scenarios: any = {
           ['RCB', 18],
           ['SRH', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'TOP 2': {
-        probability: 76,
+        probability: 74,
         points: 18,
 
         results: [
@@ -204,51 +204,51 @@ const scenarios: any = {
           ['GT', 18],
           ['SRH', 14],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       QUALIFY: {
-        probability: 98,
-        points: 18,
+        probability: 99.2,
+        points: 16,
 
         results: [
-          'GT beat CSK',
+          'SRH beat CSK guarantees GT qualification',
         ],
 
         table: [
           ['RCB', 18],
-          ['GT', 18],
-          ['SRH', 14],
+          ['GT', 16],
+          ['SRH', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       ELIMINATION: {
-        probability: 2,
+        probability: 0.8,
         points: 16,
 
         results: [
           'GT lose to CSK',
-          'RR win all matches',
+          'RR win remaining matches',
         ],
 
         table: [
-          ['RR', 18],
           ['RCB', 18],
           ['CSK', 16],
+          ['RR', 16],
           ['GT', 16],
           ['SRH', 14],
           ['PBKS', 13],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
@@ -257,7 +257,7 @@ const scenarios: any = {
   SRH: {
     cards: {
       'BEST CASE': {
-        probability: 11,
+        probability: 10,
         points: 18,
 
         results: [
@@ -270,15 +270,15 @@ const scenarios: any = {
           ['RCB', 18],
           ['GT', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'TOP 2': {
-        probability: 39,
+        probability: 41,
         points: 18,
 
         results: [
@@ -290,15 +290,15 @@ const scenarios: any = {
           ['SRH', 18],
           ['GT', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       QUALIFY: {
-        probability: 74,
+        probability: 75,
         points: 16,
 
         results: [
@@ -310,15 +310,15 @@ const scenarios: any = {
           ['GT', 16],
           ['SRH', 16],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       ELIMINATION: {
-        probability: 26,
+        probability: 25,
         points: 14,
 
         results: [
@@ -329,11 +329,11 @@ const scenarios: any = {
           ['RCB', 20],
           ['GT', 18],
           ['PBKS', 13],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['SRH', 14],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
@@ -342,48 +342,48 @@ const scenarios: any = {
   PBKS: {
     cards: {
       'BEST CASE': {
-        probability: 1,
+        probability: 0,
         points: 15,
 
         results: [
           'PBKS beat LSG',
-          'GT lose to CSK',
+          'Multiple teams lose',
         ],
 
         table: [
           ['RCB', 18],
-          ['CSK', 16],
           ['GT', 16],
-          ['PBKS', 15],
           ['SRH', 14],
+          ['PBKS', 15],
+          ['CSK', 12],
           ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'TOP 2': {
-        probability: 8,
+        probability: 0,
         points: 15,
 
         results: [
-          'PBKS beat LSG big',
+          'Mathematically almost impossible',
         ],
 
         table: [
           ['RCB', 18],
           ['GT', 16],
-          ['PBKS', 15],
           ['SRH', 14],
-          ['RR', 12],
+          ['PBKS', 15],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       QUALIFY: {
-        probability: 23,
+        probability: 31.1,
         points: 15,
 
         results: [
@@ -395,15 +395,15 @@ const scenarios: any = {
           ['GT', 16],
           ['SRH', 14],
           ['PBKS', 15],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       ELIMINATION: {
-        probability: 77,
+        probability: 68.9,
         points: 13,
 
         results: [
@@ -414,11 +414,11 @@ const scenarios: any = {
           ['RCB', 18],
           ['GT', 16],
           ['SRH', 14],
-          ['RR', 12],
           ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
           ['PBKS', 13],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
@@ -427,74 +427,73 @@ const scenarios: any = {
   RR: {
     cards: {
       'BEST CASE': {
-        probability: 4,
-        points: 18,
+        probability: 0,
+        points: 16,
 
         results: [
-          'RR win all matches',
-        ],
-
-        table: [
-          ['RCB', 18],
-          ['RR', 18],
-          ['GT', 16],
-          ['SRH', 14],
-          ['PBKS', 13],
-          ['CSK', 12],
-          ['KKR', 11],
-          ['DC', 10],
-        ],
-      },
-
-      'TOP 2': {
-        probability: 21,
-        points: 18,
-
-        results: [
-          'RR win all matches',
-          'GT lose to CSK',
-        ],
-
-        table: [
-          ['RR', 18],
-          ['RCB', 18],
-          ['CSK', 16],
-          ['GT', 16],
-          ['SRH', 14],
-          ['PBKS', 13],
-          ['KKR', 11],
-          ['DC', 10],
-        ],
-      },
-
-      QUALIFY: {
-        probability: 58,
-        points: 18,
-
-        results: [
-          'RR beat DC',
           'RR beat LSG',
           'RR beat MI',
         ],
 
         table: [
           ['RCB', 18],
-          ['RR', 18],
           ['GT', 16],
+          ['RR', 16],
           ['SRH', 14],
           ['PBKS', 13],
           ['CSK', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
+        ],
+      },
+
+      'TOP 2': {
+        probability: 8,
+        points: 16,
+
+        results: [
+          'RR win both matches',
+          'GT lose to CSK',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['CSK', 16],
+          ['RR', 16],
+          ['GT', 16],
+          ['SRH', 14],
+          ['PBKS', 13],
+          ['DC', 12],
+          ['KKR', 11],
+        ],
+      },
+
+      QUALIFY: {
+        probability: 34.8,
+        points: 16,
+
+        results: [
+          'RR win both matches',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['RR', 16],
+          ['SRH', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['DC', 12],
+          ['KKR', 11],
         ],
       },
 
       ELIMINATION: {
-        probability: 42,
-        points: 14,
+        probability: 65.2,
+        points: 12,
 
         results: [
-          'RR lose 2 matches',
+          'RR lose either match',
         ],
 
         table: [
@@ -503,9 +502,9 @@ const scenarios: any = {
           ['SRH', 14],
           ['PBKS', 13],
           ['CSK', 12],
-          ['RR', 14],
+          ['DC', 12],
+          ['RR', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
@@ -526,16 +525,16 @@ const scenarios: any = {
           ['RCB', 18],
           ['CSK', 16],
           ['GT', 16],
-          ['PBKS', 13],
           ['SRH', 14],
+          ['PBKS', 13],
           ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       'TOP 2': {
-        probability: 9,
+        probability: 12,
         points: 16,
 
         results: [
@@ -549,17 +548,18 @@ const scenarios: any = {
           ['SRH', 14],
           ['PBKS', 13],
           ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       QUALIFY: {
-        probability: 33,
+        probability: 35.5,
         points: 16,
 
         results: [
-          'CSK win both matches',
+          'CSK beat SRH',
+          'CSK beat GT',
         ],
 
         table: [
@@ -569,13 +569,13 @@ const scenarios: any = {
           ['SRH', 14],
           ['PBKS', 13],
           ['RR', 12],
+          ['DC', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
 
       ELIMINATION: {
-        probability: 67,
+        probability: 64.5,
         points: 12,
 
         results: [
@@ -588,188 +588,186 @@ const scenarios: any = {
           ['SRH', 16],
           ['PBKS', 13],
           ['RR', 12],
+          ['DC', 12],
           ['CSK', 12],
           ['KKR', 11],
-          ['DC', 10],
         ],
       },
     },
   },
-KKR: {
-  cards: {
-    'BEST CASE': {
-      probability: 0,
-      points: 15,
 
-      results: [
-        'KKR beat MI',
-        'KKR beat DC',
-        'CSK lose both matches',
-      ],
+  KKR: {
+    cards: {
+      'BEST CASE': {
+        probability: 0,
+        points: 15,
 
-      table: [
-        ['RCB', 18],
-        ['GT', 18],
-        ['SRH', 16],
-        ['KKR', 15],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['DC', 10],
-      ],
-    },
+        results: [
+          'KKR beat MI',
+          'KKR beat DC',
+          'CSK lose both',
+        ],
 
-    'TOP 2': {
-      probability: 1,
-      points: 15,
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['KKR', 15],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
+        ],
+      },
 
-      results: [
-        'KKR win both matches big',
-        'GT lose to CSK',
-      ],
+      'TOP 2': {
+        probability: 1,
+        points: 15,
 
-      table: [
-        ['RCB', 18],
-        ['CSK', 16],
-        ['KKR', 15],
-        ['GT', 16],
-        ['SRH', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['DC', 10],
-      ],
-    },
+        results: [
+          'KKR win both big',
+        ],
 
-    QUALIFY: {
-      probability: 10,
-      points: 15,
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['CSK', 16],
+          ['KKR', 15],
+          ['SRH', 14],
+          ['PBKS', 13],
+          ['RR', 12],
+          ['DC', 12],
+        ],
+      },
 
-      results: [
-        'KKR beat MI',
-        'KKR beat DC',
-        'CSK lose both',
-      ],
+      QUALIFY: {
+        probability: 13.9,
+        points: 15,
 
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['KKR', 15],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['DC', 10],
-      ],
-    },
+        results: [
+          'KKR win both matches',
+          'CSK lose both',
+        ],
 
-    ELIMINATION: {
-      probability: 90,
-      points: 11,
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['KKR', 15],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
+        ],
+      },
 
-      results: [
-        'KKR lose either match',
-      ],
+      ELIMINATION: {
+        probability: 86.1,
+        points: 11,
 
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['KKR', 11],
-        ['DC', 10],
-      ],
-    },
-  },
-},
+        results: [
+          'KKR lose either match',
+        ],
 
-DC: {
-  cards: {
-    'BEST CASE': {
-      probability: 0,
-      points: 14,
-
-      results: [
-        'DC beat RR',
-        'DC beat KKR',
-        'CSK lose both matches',
-      ],
-
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['DC', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['KKR', 11],
-      ],
-    },
-
-    'TOP 2': {
-      probability: 0,
-      points: 14,
-
-      results: [
-        'Mathematically near impossible',
-      ],
-
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['DC', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['KKR', 11],
-      ],
-    },
-
-    QUALIFY: {
-      probability: 5,
-      points: 14,
-
-      results: [
-        'DC win both matches',
-        'CSK lose both matches',
-      ],
-
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['DC', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['KKR', 11],
-      ],
-    },
-
-    ELIMINATION: {
-      probability: 95,
-      points: 10,
-
-      results: [
-        'DC lose either match',
-      ],
-
-      table: [
-        ['RCB', 18],
-        ['GT', 16],
-        ['SRH', 14],
-        ['PBKS', 13],
-        ['RR', 12],
-        ['CSK', 12],
-        ['KKR', 11],
-        ['DC', 10],
-      ],
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
+          ['KKR', 11],
+        ],
+      },
     },
   },
-},
+
+  DC: {
+    cards: {
+      'BEST CASE': {
+        probability: 0,
+        points: 14,
+
+        results: [
+          'DC beat KKR',
+          'CSK lose both',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['DC', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['KKR', 11],
+        ],
+      },
+
+      'TOP 2': {
+        probability: 0,
+        points: 14,
+
+        results: [
+          'Mathematically impossible',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['DC', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['KKR', 11],
+        ],
+      },
+
+      QUALIFY: {
+        probability: 10.6,
+        points: 14,
+
+        results: [
+          'DC beat KKR',
+          'CSK lose both',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['DC', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['KKR', 11],
+        ],
+      },
+
+      ELIMINATION: {
+        probability: 89.4,
+        points: 12,
+
+        results: [
+          'DC lose to KKR',
+        ],
+
+        table: [
+          ['RCB', 18],
+          ['GT', 16],
+          ['SRH', 14],
+          ['PBKS', 13],
+          ['CSK', 12],
+          ['RR', 12],
+          ['DC', 12],
+          ['KKR', 13],
+        ],
+      },
+    },
+  },
 }
 
 function ScenarioCard({
@@ -798,6 +796,25 @@ function ScenarioCard({
             width: `${data.probability}%`,
           }}
         />
+      </div>
+
+      <div className="mb-6 text-center">
+        <div className="text-sm uppercase tracking-widest text-zinc-400 mb-3">
+          Remaining Matches
+        </div>
+
+        <div className="space-y-2">
+          {remainingMatches[
+            data.team
+          ]?.map((match: string, i: number) => (
+            <div
+              key={i}
+              className="bg-white/10 p-3 rounded-xl font-semibold"
+            >
+              {match}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mb-6 text-center">
@@ -871,7 +888,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/70">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF RCB vs PBKS
+              AS OF DC vs RR
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -880,11 +897,30 @@ export default function Home() {
               Playoff Predictor
             </h1>
 
-            <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-10">
+            <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-6">
               Explore every qualification
               scenario, top-2 possibility and
               elimination route.
             </p>
+
+            <div className="mb-10 space-y-2 text-yellow-300 font-semibold text-center">
+              <p>
+                If SRH beat CSK today:
+                <span className="text-green-400">
+                  {' '}
+                  SRH & GT qualify into
+                  playoffs
+                </span>
+              </p>
+
+              <p>
+                If CSK beat SRH today:
+                <span className="text-blue-400">
+                  {' '}
+                  RCB will play Qualifier 1
+                </span>
+              </p>
+            </div>
 
             <div className="w-full max-w-xl">
               <h2 className="text-3xl font-bold mb-5">
@@ -936,7 +972,8 @@ export default function Home() {
               </div>
 
               <h2 className="text-5xl font-black text-green-300 mb-4">
-                {selectedTeam} HAVE QUALIFIED
+                {selectedTeam} HAVE
+                QUALIFIED
               </h2>
             </div>
           )}
@@ -944,11 +981,14 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-start gap-8">
             {Object.entries(
               scenarios[selectedTeam].cards
-            ).map(([title, data]) => (
+            ).map(([title, data]: any) => (
               <ScenarioCard
                 key={title}
                 title={title}
-                data={data}
+                data={{
+                  ...data,
+                  team: selectedTeam,
+                }}
                 color={
                   title === 'BEST CASE'
                     ? 'bg-green-500/10 border-green-400'
