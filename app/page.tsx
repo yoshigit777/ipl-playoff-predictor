@@ -23,42 +23,44 @@ const probabilities: Record<
 > = {
   RCB: {
     qualify: '100%',
-    top2: '100%',
+    top2: '96%',
     status: 'QUALIFIED 🎉',
   },
 
   GT: {
-    qualify: '99.2%',
-    top2: '74%',
+    qualify: '100%',
+    top2: '72%',
+    status: 'QUALIFIED 🎉',
   },
 
   SRH: {
-    qualify: '75%',
-    top2: '41%',
+    qualify: '100%',
+    top2: '44%',
+    status: 'QUALIFIED 🎉',
   },
 
   PBKS: {
-    qualify: '31.1%',
+    qualify: '28%',
     top2: '0%',
   },
 
   CSK: {
-    qualify: '35.5%',
-    top2: '12%',
+    qualify: '18%',
+    top2: '4%',
   },
 
   RR: {
-    qualify: '34.8%',
-    top2: '8%',
+    qualify: '46%',
+    top2: '11%',
   },
 
   KKR: {
-    qualify: '13.9%',
+    qualify: '15%',
     top2: '1%',
   },
 
   DC: {
-    qualify: '10.6%',
+    qualify: '8%',
     top2: '0%',
   },
 }
@@ -77,19 +79,19 @@ const scenarios: Record<
 
     qualification: [
       'Already qualified for playoffs 🎉',
-      'RCB confirm Top 2 if CSK beat SRH OR CSK beat GT',
-      'RCB beat SRH = finish 1st with 20 points',
+      'RCB confirm Top 2 if they beat SRH',
+      'RCB also confirm Top 2 if CSK beat GT',
     ],
 
     top2: [
-      'RCB are overwhelming favourites for Top 2',
-      'Only an extreme NRR swing can push them down',
-      'SRH and GT both need to overtake RCB on NRR',
+      'RCB finish 1st if they beat SRH',
+      'Only an extreme NRR swing can deny Top 2',
+      'GT and SRH both need massive NRR wins',
     ],
 
     elimination: [
       'RCB cannot be eliminated',
-      'Playoff spot already secured',
+      'Playoff berth already sealed',
     ],
   },
 
@@ -97,43 +99,41 @@ const scenarios: Record<
     fixtures: ['CSK (H)'],
 
     qualification: [
-      'GT qualify if SRH beat CSK',
-      'GT also qualify if LSG beat RR',
-      'GT beat CSK = almost certain Top 2',
+      'GT already qualified after SRH beat CSK 🎉',
+      'GT beat CSK = strong chance of Top 2',
+      'GT can still finish 1st if RCB lose',
     ],
 
     top2: [
-      'GT Top 2 confirmed if SRH lose one game and GT beat CSK',
-      'GT can finish 1st if RCB lose to SRH',
-      '18-point tie may depend on NRR',
+      'GT Top 2 confirmed if SRH lose to RCB',
+      '18-point tie with RCB/SRH may depend on NRR',
+      'GT need a strong win margin vs CSK',
     ],
 
     elimination: [
-      'GT elimination requires a very specific 4-way tie',
-      'CSK beat SRH and GT',
-      'RR beat LSG and MI',
-      'SRH beat RCB',
+      'GT cannot be eliminated',
+      'Playoff berth already sealed',
     ],
   },
 
   SRH: {
-    fixtures: ['CSK (A)', 'RCB (H)'],
+    fixtures: ['RCB (H)'],
 
     qualification: [
-      'SRH beat CSK = SRH and GT qualify',
-      'SRH can qualify with one win too',
-      'SRH can even sneak through on 14 points',
+      'SRH already qualified after beating CSK 🎉',
+      'Beating RCB guarantees strong Top 2 chance',
+      'SRH can still finish 1st via NRR',
     ],
 
     top2: [
-      'Win both games and SRH become Top 2 favourites',
-      '18-point tie with RCB and GT may go to NRR',
-      'SRH beating RCB becomes massive for Top 2',
+      'SRH Top 2 possible if they beat RCB',
+      'NRR battle with GT and RCB may decide positions',
+      'Large-margin win improves SRH chances heavily',
     ],
 
     elimination: [
-      'Lose both games and SRH become vulnerable',
-      '16-point tie scenarios could eliminate SRH on NRR',
+      'SRH cannot be eliminated',
+      'Playoff berth already sealed',
     ],
   },
 
@@ -141,41 +141,40 @@ const scenarios: Record<
     fixtures: ['LSG (A)'],
 
     qualification: [
-      'PBKS need to beat LSG',
-      'Only one of SRH, CSK or RR should reach 16',
-      'KKR must lose OR PBKS stay ahead on NRR',
+      'PBKS must beat LSG',
+      'RR must lose at least one game',
+      'KKR must lose one OR PBKS stay ahead on NRR',
     ],
 
     top2: [
-      'Top 2 chances almost impossible',
-      'PBKS max out at 15 points',
+      'Top 2 chances practically impossible',
+      'PBKS maximum possible points = 15',
     ],
 
     elimination: [
-      'PBKS can still qualify with 13 points',
-      'Need RR to lose both matches',
-      'Need SRH and GT to beat CSK',
+      'PBKS lose to LSG = almost certainly eliminated',
+      'RR and KKR results heavily affect PBKS',
     ],
   },
 
   CSK: {
-    fixtures: ['SRH (H)', 'GT (A)'],
+    fixtures: ['GT (A)'],
 
     qualification: [
-      'CSK qualify with 16 points if they win both',
-      'RCB beating SRH helps CSK massively',
-      'RR dropping one game also helps',
+      'CSK must beat GT',
+      'RR must lose both matches',
+      'LSG must beat PBKS',
+      'KKR must beat DC but lose to MI',
     ],
 
     top2: [
-      'CSK Top 2 possible with two wins',
-      '16-point ties may go to NRR',
-      'Beating SRH is the key fixture',
+      'Top 2 chances are extremely slim',
+      'Would require massive NRR swing',
     ],
 
     elimination: [
-      'Lose both games and CSK are eliminated',
-      'One loss creates dependence on several results',
+      'CSK loss to GT = eliminated',
+      'Even with a win, CSK depend on many results',
     ],
   },
 
@@ -183,19 +182,19 @@ const scenarios: Record<
     fixtures: ['LSG (H)', 'MI (A)'],
 
     qualification: [
-      'RR likely need to win both remaining games',
-      'Only one of SRH or CSK should get to 16',
-      'RR can still qualify on 14 in rare cases',
+      'RR qualify if they win both matches',
+      '16 points guarantees qualification',
+      'RR can still qualify with 14 in certain scenarios',
     ],
 
     top2: [
-      'RR Top 2 possible if they win both and GT lose',
-      'NRR may become decisive',
+      'RR Top 2 possible if they win both big',
+      'GT or SRH dropping games helps RR massively',
     ],
 
     elimination: [
-      'RR lose both and qualification becomes extremely unlikely',
-      'One loss puts RR under major pressure',
+      'RR lose both = eliminated',
+      'One loss creates heavy NRR dependence',
     ],
   },
 
@@ -204,19 +203,18 @@ const scenarios: Record<
 
     qualification: [
       'KKR likely need to win both matches',
-      'Only one of SRH, CSK or RR should hit 16',
-      'PBKS must lose OR trail KKR on NRR',
+      'RR must lose one match',
+      'PBKS losing to LSG helps KKR greatly',
     ],
 
     top2: [
-      'Top 2 chances are extremely tiny',
-      '15-point ceiling hurts KKR heavily',
+      'Top 2 mathematically tiny',
+      '15-point ceiling hurts KKR badly',
     ],
 
     elimination: [
-      'KKR can still qualify with 13 points',
-      'Need RR to lose both',
-      'Need SRH and GT to beat CSK',
+      'KKR losing either game puts qualification at major risk',
+      'NRR battle with PBKS possible',
     ],
   },
 
@@ -225,9 +223,9 @@ const scenarios: Record<
 
     qualification: [
       'DC must beat KKR',
-      'Need LSG to beat PBKS',
-      'Need LSG and MI to beat RR',
-      'Need SRH and GT to beat CSK',
+      'LSG must beat PBKS',
+      'RR must lose both matches',
+      'GT must beat CSK',
     ],
 
     top2: [
@@ -235,8 +233,8 @@ const scenarios: Record<
     ],
 
     elimination: [
-      'NRR of -0.871 is a huge problem',
-      'Any multi-team tie likely eliminates DC',
+      'Poor NRR (-0.871) is DC’s biggest issue',
+      'Any tie on points likely eliminates DC',
     ],
   },
 }
@@ -292,7 +290,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/75">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF DC vs RR
+              AS OF SRH vs CSK
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -309,18 +307,15 @@ export default function Home() {
 
             <div className="mb-10 space-y-2 text-yellow-300 font-semibold text-center">
               <p>
-                If SRH beat CSK:
-                <span className="text-green-400">
-                  {' '}
-                  SRH & GT qualify into playoffs
-                </span>
+                SRH and GT have officially
+                qualified for the playoffs 🎉
               </p>
 
               <p>
-                If CSK beat SRH:
-                <span className="text-blue-400">
+                RCB can seal Top 2 if:
+                <span className="text-green-400">
                   {' '}
-                  RCB confirm Qualifier 1
+                  CSK beat GT OR RCB beat SRH
                 </span>
               </p>
             </div>
