@@ -208,8 +208,7 @@ const scenarios: Record<
     ],
 
     top2: [
-      'Top 2 chances practically over',
-      'Would require miracle NRR swing',
+      'Mathematically Impossible',
     ],
 
     elimination: [
