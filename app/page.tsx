@@ -40,27 +40,27 @@ const probabilities: Record<
   },
 
   RR: {
-    qualify: '38%',
+    qualify: '62%',
     top2: '1%',
   },
 
   PBKS: {
-    qualify: '37%',
+    qualify: '24%',
     top2: '0%',
   },
 
   KKR: {
-    qualify: '11%',
+    qualify: '7%',
     top2: '0%',
   },
 
   CSK: {
-    qualify: '11%',
+    qualify: '7%',
     top2: '0%',
   },
 
   DC: {
-    qualify: '4%',
+    qualify: '0.02%',
     top2: '0%',
   },
 }
@@ -79,19 +79,19 @@ const scenarios: Record<
 
     qualification: [
       'Already qualified for playoffs 🎉',
-      'RCB seal Top 2 with a win over SRH',
-      'CSK beating GT also confirms RCB Top 2',
+      'RCB finish Top 2 if they beat SRH',
+      'CSK beating GT also guarantees RCB Top 2',
     ],
 
     top2: [
-      'RCB are overwhelming favourites for Top 2',
-      '99.7% chance after Match 63',
-      'Only a massive NRR swing can deny them',
+      'RCB currently have 99.7% Top 2 odds',
+      'Only massive NRR swings can deny them',
+      'SRH must beat RCB heavily and GT must thrash CSK',
     ],
 
     elimination: [
       'RCB cannot be eliminated',
-      'Playoff spot already confirmed',
+      'Playoff berth already secured',
     ],
   },
 
@@ -100,19 +100,19 @@ const scenarios: Record<
 
     qualification: [
       'GT officially qualified 🎉',
-      'GT beat CSK = strong Top 2 chance',
+      'GT beat CSK = likely Qualifier 1',
       'GT can still finish 1st if RCB lose',
     ],
 
     top2: [
-      'GT Top 2 chances currently at 58%',
-      'GT need a strong result vs CSK',
-      'NRR battle with SRH and RCB possible',
+      'GT currently have 58% Top 2 odds',
+      'GT vs SRH NRR battle possible',
+      'Big win over CSK boosts GT massively',
     ],
 
     elimination: [
       'GT cannot be eliminated',
-      'Playoff berth already secured',
+      'Playoff spot already sealed',
     ],
   },
 
@@ -121,14 +121,14 @@ const scenarios: Record<
 
     qualification: [
       'SRH officially qualified 🎉',
-      'SRH beat RCB = massive Top 2 boost',
-      'SRH can still finish 1st via NRR',
+      'SRH beat RCB = strong Top 2 chance',
+      'SRH can still finish league stage 1st',
     ],
 
     top2: [
-      'Top 2 odds jumped to 41%',
-      'Beating RCB becomes the key game',
-      'Large-margin win improves NRR significantly',
+      'SRH currently at 41% for Top 2',
+      'Need strong win margin over RCB',
+      'NRR battle with GT and RCB possible',
     ],
 
     elimination: [
@@ -138,22 +138,23 @@ const scenarios: Record<
   },
 
   RR: {
-    fixtures: ['LSG (H)', 'MI (A)'],
+    fixtures: ['MI (A)'],
 
     qualification: [
-      'RR likely need to win both remaining matches',
-      '16 points almost guarantees qualification',
-      'RR can still qualify on 14 in some scenarios',
+      'RR beat MI = qualify on 16 points',
+      'Qualification fully in RR hands',
+      'RR can still qualify on 14 in some cases',
     ],
 
     top2: [
-      'RR have a tiny 1% Top 2 chance',
-      'Need massive results and NRR swing',
+      'RR still have a tiny Top 2 chance',
+      'Need GT and SRH to lose heavily',
+      'Need huge win margin vs MI',
     ],
 
     elimination: [
-      'RR lose both = eliminated',
-      'One loss creates huge pressure',
+      'RR lose to MI and qualification becomes risky',
+      'PBKS and KKR can still overtake RR',
     ],
   },
 
@@ -162,13 +163,13 @@ const scenarios: Record<
 
     qualification: [
       'PBKS must beat LSG',
-      'RR should lose at least one match',
-      'KKR losing helps PBKS massively',
+      'KKR should lose one match',
+      'RR losing to MI helps PBKS massively',
     ],
 
     top2: [
-      'Top 2 now mathematically almost impossible',
-      'PBKS max possible points = 15',
+      'Top 2 mathematically impossible',
+      'Maximum possible points = 15',
     ],
 
     elimination: [
@@ -181,19 +182,19 @@ const scenarios: Record<
     fixtures: ['MI (H)', 'DC (H)'],
 
     qualification: [
-      'KKR likely need to win both games',
-      'RR should lose one match',
-      'PBKS losing helps KKR greatly',
+      'KKR ideally need to win both games',
+      'PBKS losing to LSG helps massively',
+      'RR losing to MI keeps KKR alive',
     ],
 
     top2: [
-      'Top 2 mathematically near impossible',
+      'Top 2 mathematically impossible',
       '15-point ceiling hurts KKR badly',
     ],
 
     elimination: [
-      'Lose either match and qualification gets difficult',
-      'NRR could become decisive',
+      'Lose either match and KKR likely eliminated',
+      'NRR may decide race with PBKS',
     ],
   },
 
@@ -202,18 +203,19 @@ const scenarios: Record<
 
     qualification: [
       'CSK must beat GT',
-      'Need RR to lose both matches',
-      'Need LSG to beat PBKS',
-      'Need KKR to split their two games',
+      'RR must lose to MI',
+      'PBKS must lose to LSG',
+      'KKR must split their two matches',
     ],
 
     top2: [
-      'Mathematically Impossible',
+      'Top 2 chances effectively dead',
+      'Would require absurd NRR swing',
     ],
 
     elimination: [
       'CSK lose to GT = eliminated',
-      'Even winning may not be enough',
+      'Even victory may not be enough',
     ],
   },
 
@@ -222,9 +224,9 @@ const scenarios: Record<
 
     qualification: [
       'DC must beat KKR',
-      'Need RR to lose both',
-      'Need GT to beat CSK',
-      'Need LSG to beat PBKS',
+      'RR must lose to MI',
+      'PBKS must lose to LSG',
+      'CSK must lose to GT',
     ],
 
     top2: [
@@ -232,8 +234,8 @@ const scenarios: Record<
     ],
 
     elimination: [
-      'Poor NRR severely hurts DC',
-      'Any tie on points likely eliminates them',
+      'NRR of -0.971 is catastrophic',
+      'Qualification now almost impossible',
     ],
   },
 }
@@ -289,7 +291,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/75">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF MATCH 63 • CSK vs SRH
+              AS OF MATCH 64 • RR vs LSG
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -300,8 +302,8 @@ export default function Home() {
 
             <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-6">
               Explore every qualification
-              scenario, top-two possibility
-              and elimination pathway.
+              scenario, Top 2 pathway
+              and elimination risk.
             </p>
 
             <div className="mb-10 space-y-2 text-yellow-300 font-semibold text-center">
@@ -311,8 +313,7 @@ export default function Home() {
               </p>
 
               <p>
-                RCB are now overwhelming favourites
-                for a Top 2 finish 🏏
+                RR now control their own destiny 🏏
               </p>
             </div>
 
