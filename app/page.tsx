@@ -40,7 +40,7 @@ const probabilities: Record<
   },
 
   RR: {
-    qualify: '62%',
+    qualify: '58%',
     top2: '1%',
   },
 
@@ -50,12 +50,12 @@ const probabilities: Record<
   },
 
   KKR: {
-    qualify: '7%',
+    qualify: '14%',
     top2: '0%',
   },
 
   CSK: {
-    qualify: '7%',
+    qualify: '5%',
     top2: '0%',
   },
 
@@ -79,7 +79,7 @@ const scenarios: Record<
 
     qualification: [
       'Already qualified for playoffs 🎉',
-      'RCB finish Top 2 if they beat SRH',
+      'RCB seal Top 2 with a win over SRH',
       'CSK beating GT also guarantees RCB Top 2',
     ],
 
@@ -163,7 +163,7 @@ const scenarios: Record<
 
     qualification: [
       'PBKS must beat LSG',
-      'KKR should lose one match',
+      'KKR should lose to DC',
       'RR losing to MI helps PBKS massively',
     ],
 
@@ -174,27 +174,27 @@ const scenarios: Record<
 
     elimination: [
       'PBKS lose to LSG = likely eliminated',
-      'NRR battle with KKR possible',
+      'KKR and RR results are crucial',
     ],
   },
 
   KKR: {
-    fixtures: ['MI (H)', 'DC (H)'],
+    fixtures: ['DC (H)'],
 
     qualification: [
-      'KKR ideally need to win both games',
-      'PBKS losing to LSG helps massively',
-      'RR losing to MI keeps KKR alive',
+      'KKR must beat DC',
+      'PBKS must lose to LSG',
+      'RR must lose to MI',
     ],
 
     top2: [
       'Top 2 mathematically impossible',
-      '15-point ceiling hurts KKR badly',
+      'KKR can only finish on 15 points',
     ],
 
     elimination: [
-      'Lose either match and KKR likely eliminated',
-      'NRR may decide race with PBKS',
+      'KKR lose to DC = eliminated',
+      'Even a win still requires other results',
     ],
   },
 
@@ -205,11 +205,12 @@ const scenarios: Record<
       'CSK must beat GT',
       'RR must lose to MI',
       'PBKS must lose to LSG',
-      'KKR must split their two matches',
+      'KKR must lose to DC',
     ],
 
     top2: [
-      'Mathematically Impossible',
+      'Top 2 chances effectively dead',
+      'Would require absurd NRR swing',
     ],
 
     elimination: [
@@ -233,7 +234,7 @@ const scenarios: Record<
     ],
 
     elimination: [
-      'NRR of -0.971 is catastrophic',
+      'NRR of -0.871 is catastrophic',
       'Qualification now almost impossible',
     ],
   },
@@ -290,7 +291,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/75">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF MATCH 64 • RR vs LSG
+              AS OF MATCH 65 • KKR vs MI
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -312,7 +313,7 @@ export default function Home() {
               </p>
 
               <p>
-                RR now control their own destiny 🏏
+                KKR stay alive after defeating MI 🏏
               </p>
             </div>
 
