@@ -23,46 +23,46 @@ const probabilities: Record<
 > = {
   RCB: {
     qualify: '✔️',
-    top2: '99.9%',
-    status: 'QUALIFIED 🎉',
+    top2: '✔️',
+    status: 'QUALIFIER 1 🎉',
   },
 
   GT: {
     qualify: '✔️',
-    top2: '99%',
-    status: 'QUALIFIED 🎉',
+    top2: '✔️',
+    status: 'QUALIFIER 1 🎉',
   },
 
   SRH: {
     qualify: '✔️',
-    top2: '1%',
-    status: 'QUALIFIED 🎉',
+    top2: '❌',
+    status: 'ELIMINATOR 🎯',
   },
 
   RR: {
     qualify: '58%',
-    top2: '0%',
+    top2: '❌',
   },
 
   PBKS: {
     qualify: '24%',
-    top2: '0%',
+    top2: '❌',
   },
 
   KKR: {
     qualify: '14%',
-    top2: '0%',
+    top2: '❌',
   },
 
   CSK: {
     qualify: '0%',
-    top2: '0%',
+    top2: '❌',
     status: 'ELIMINATED ❌',
   },
 
   DC: {
     qualify: '0.02%',
-    top2: '0%',
+    top2: '❌',
   },
 }
 
@@ -76,65 +76,62 @@ const scenarios: Record<
   }
 > = {
   RCB: {
-    fixtures: ['SRH (A)'],
+    fixtures: ['GT (Qualifier 1)'],
 
     qualification: [
-      'Already qualified for playoffs 🎉',
-      'RCB officially secured Top 2',
-      'RCB remain ahead of GT even with moderate defeat',
+      'RCB officially qualified for Qualifier 1 🎉',
+      'RCB will face GT in Qualifier 1',
+      'Top 2 officially secured',
     ],
 
     top2: [
-      'If RCB bat first: SRH must chase in 12.1 overs or earlier',
-      'If RCB bowl first: RCB must avoid losing by 77+ runs',
-      'RCB are overwhelming favourites for Top 2',
+      'RCB locked into Top 2',
+      'NRR battle successfully survived 😭',
     ],
 
     elimination: [
       'RCB cannot be eliminated',
-      'Qualifier 1 almost confirmed',
+      'One win away from IPL Final',
     ],
   },
 
   GT: {
-    fixtures: ['League stage completed'],
+    fixtures: ['RCB (Qualifier 1)'],
 
     qualification: [
-      'GT officially qualified 🎉',
-      'GT finished on 18 points',
-      'GT almost certain to finish Top 2',
+      'GT officially qualified for Qualifier 1 🎉',
+      'GT finished Top 2 successfully',
+      'Will face RCB in Qualifier 1',
     ],
 
     top2: [
-      'GT finish Top 2 unless SRH pull off absurd NRR swing',
-      'GT stay Top 2 if first innings score tomorrow stays below 500 😭',
-      'Current NRR: +0.695',
+      'GT Top 2 officially confirmed',
+      'Finished ahead of SRH comfortably',
     ],
 
     elimination: [
       'GT cannot be eliminated',
-      'Playoff spot already secured',
+      'Two chances to reach final',
     ],
   },
 
   SRH: {
-    fixtures: ['RCB (H)'],
+    fixtures: ['Eliminator vs 4th Place'],
 
     qualification: [
       'SRH officially qualified 🎉',
-      'SRH can still mathematically finish Top 2',
-      'Need historic NRR swing against RCB',
+      'SRH locked into Eliminator',
+      'Will face the eventual 4th placed team',
     ],
 
     top2: [
-      'If SRH bat first: win by 102+ runs',
-      'If SRH bowl first: chase in 10.1 overs or earlier',
-      'One of the craziest NRR equations ever 🧮',
+      'Top 2 officially impossible',
+      'NRR equations against RCB were too massive',
     ],
 
     elimination: [
-      'SRH cannot be eliminated',
-      'Playoff berth already secured',
+      'Lose Eliminator = knocked out',
+      'Must win two straight playoff games for Final',
     ],
   },
 
@@ -142,18 +139,18 @@ const scenarios: Record<
     fixtures: ['MI (A)'],
 
     qualification: [
-      'RR beat MI = qualify on 16 points',
-      'Qualification fully in RR hands',
+      'RR beat MI = qualify directly on 16 points',
+      'Qualification completely in RR hands',
       'Highest odds among remaining contenders',
     ],
 
     top2: [
-      'Top 2 mathematically impossible',
+      'Top 2 officially impossible',
     ],
 
     elimination: [
-      'RR lose to MI and qualification becomes risky',
-      'PBKS and KKR can still overtake RR',
+      'RR lose and PBKS/KKR can overtake',
+      'NRR may become important in 14-point ties',
     ],
   },
 
@@ -161,19 +158,20 @@ const scenarios: Record<
     fixtures: ['LSG (A)'],
 
     qualification: [
-      'PBKS must beat LSG',
-      'RR should lose to MI',
-      'KKR should lose to DC',
+      'PBKS beat LSG',
+      'MI beat RR',
+      'DC beat KKR',
     ],
 
     top2: [
-      'Top 2 mathematically impossible',
+      'Top 2 officially impossible',
       'Maximum possible points = 15',
     ],
 
     elimination: [
-      'PBKS lose to LSG = eliminated',
-      'Dependent on RR and KKR results',
+      'If PBKS and KKR both win while RR finish on 14:',
+      'If PBKS win by 10 runs, KKR must NOT win by more than 60 runs',
+      'Or KKR must not chase before 13.5 overs',
     ],
   },
 
@@ -182,25 +180,25 @@ const scenarios: Record<
 
     qualification: [
       'KKR must beat DC',
-      'PBKS must lose to LSG',
       'RR must lose to MI',
+      'PBKS must lose to LSG OR lose NRR battle',
     ],
 
     top2: [
-      'Top 2 mathematically impossible',
+      'Top 2 officially impossible',
     ],
 
     elimination: [
       'KKR lose to DC = eliminated',
-      'Even victory still requires help',
+      'NRR battle with PBKS possible',
     ],
   },
 
   CSK: {
-    fixtures: ['League stage completed'],
+    fixtures: ['League Stage Completed'],
 
     qualification: [
-      'CSK are officially eliminated ❌',
+      'CSK officially eliminated ❌',
       'Third straight group-stage exit',
     ],
 
@@ -209,7 +207,7 @@ const scenarios: Record<
     ],
 
     elimination: [
-      'Loss to GT ended CSK campaign',
+      'GT defeat officially ended campaign',
       'Finished on 12 points',
     ],
   },
@@ -228,8 +226,8 @@ const scenarios: Record<
     ],
 
     elimination: [
-      'NRR of -0.871 is catastrophic',
-      'Qualification chance only 0.02%',
+      'NRR of -0.871 remains catastrophic',
+      'Qualification odds effectively microscopic',
     ],
   },
 }
@@ -285,7 +283,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/75">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF MATCH 66 • GT vs CSK
+              AS OF MATCH 67 • SRH vs RCB
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -296,23 +294,22 @@ export default function Home() {
 
             <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-6">
               Explore every qualification
-              scenario, Top 2 pathway
+              scenario, playoff bracket
               and elimination risk.
             </p>
 
             <div className="mb-10 space-y-2 text-yellow-300 font-semibold text-center">
               <p>
-                RCB, GT and SRH have officially
-                qualified for the playoffs 🎉
+                🏆 RCB vs GT Qualifier 1 confirmed
               </p>
 
               <p>
-                CSK are officially eliminated ❌
+                ⚔️ SRH will play the 4th placed team
+                in the Eliminator
               </p>
 
               <p>
-                GT will finish Top 2 unless cricket
-                breaks mathematics itself 🧮
+                🔥 Final playoff spot still wide open
               </p>
             </div>
 
@@ -416,7 +413,7 @@ export default function Home() {
             />
 
             <InfoCard
-              title="TOP 2 ROUTE"
+              title="PLAYOFF POSITION"
               items={
                 scenarios[selectedTeam].top2
               }
