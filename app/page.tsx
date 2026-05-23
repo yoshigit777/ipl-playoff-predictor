@@ -45,8 +45,9 @@ const probabilities: Record<
   },
 
   PBKS: {
-    qualify: '24%',
-    top2: '❌',
+    qualify: 'PLAYOFF POSITION',
+    top2: '15 PTS',
+    status: 'CURRENTLY 4TH 🟢',
   },
 
   KKR: {
@@ -155,23 +156,23 @@ const scenarios: Record<
   },
 
   PBKS: {
-    fixtures: ['LSG (A)'],
+    fixtures: ['League Stage Completed'],
 
     qualification: [
-      'PBKS beat LSG',
-      'MI beat RR',
-      'DC beat KKR',
+      'PBKS are provisionally 4th after beating LSG 🎉',
+      'If RR beat MI, PBKS are eliminated',
+      'If MI beat RR and KKR fail massive NRR swing, PBKS qualify',
     ],
 
     top2: [
       'Top 2 officially impossible',
-      'Maximum possible points = 15',
+      'Finished league stage on 15 points',
     ],
 
     elimination: [
-      'If PBKS and KKR both win while RR finish on 14:',
-      'If PBKS win by 10 runs, KKR must NOT win by more than 60 runs',
-      'Or KKR must not chase before 13.5 overs',
+      'If MI beat RR, KKR can still overtake PBKS on NRR',
+      'KKR need a 77-run win if scoring 200',
+      'If chasing 180, KKR must finish in roughly 12 to 12.4 overs',
     ],
   },
 
@@ -180,17 +181,19 @@ const scenarios: Record<
 
     qualification: [
       'KKR must beat DC',
-      'RR must lose to MI',
-      'PBKS must lose to LSG OR lose NRR battle',
+      'MI must beat RR',
+      'KKR must complete huge NRR swing over PBKS',
     ],
 
     top2: [
       'Top 2 officially impossible',
+      'KKR can only finish on 15 points',
     ],
 
     elimination: [
-      'KKR lose to DC = eliminated',
-      'NRR battle with PBKS possible',
+      'If RR beat MI, KKR are eliminated',
+      'If RR lose, KKR need historic NRR jump',
+      '77-run win or ultra-fast chase required',
     ],
   },
 
@@ -283,7 +286,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/75">
           <div className="flex flex-col items-center justify-center text-center px-4 min-h-screen">
             <div className="mb-5 bg-yellow-400/20 border border-yellow-400 text-yellow-300 px-5 py-2 rounded-full text-sm font-bold tracking-widest">
-              AS OF MATCH 67 • SRH vs RCB
+              AS OF PBKS vs LSG
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6">
@@ -309,7 +312,7 @@ export default function Home() {
               </p>
 
               <p>
-                🔥 Final playoff spot still wide open
+                🔥 PBKS currently hold the final playoff spot
               </p>
             </div>
 
@@ -362,7 +365,7 @@ export default function Home() {
               </div>
 
               <div className="bg-yellow-500/20 border border-yellow-400 px-5 py-3 rounded-2xl text-lg font-bold">
-                Top 2 Odds:{' '}
+                Status:{' '}
                 {
                   probabilities[selectedTeam]
                     .top2
